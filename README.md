@@ -11,6 +11,8 @@ at org.jboss.resteasy.core.ExceptionHandler.handleApplicationException(Exception
 ...
 ````
 
+Quarkus Github issue : https://github.com/quarkusio/quarkus/issues/19420
+
 You can reproduce the bug by running the unit tests (mvn test) or by calling the Rest endpoint http://localhost:8080/personnes
 when the application is started.
 You can also use swagger at http://localhost:8080/q/swagger-ui/
