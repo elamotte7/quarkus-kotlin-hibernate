@@ -20,7 +20,7 @@ class PersonneRepositoryTest {
     @Test
     fun testCherchePPersonnes(){
         val list = personneRepository.requeteListePersonneEntityPaginee("", 0, 10).list()
-        assertEquals(1, list.size)
+        assertEquals(3, list.size)
     }
 
 }
