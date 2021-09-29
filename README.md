@@ -1,58 +1,31 @@
-# quarkus-kotlin-hibernate Project
+# quarkus-kotlin-hibernate
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Description
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project is a bug reproducer.
 
-## Running the application in dev mode
+When you are calling Serch method from PersonneRepository you get the following stack trace
+````
+2021-09-29 13:54:13,180 ERROR [io.qua.ver.htt.run.QuarkusErrorHandler] (executor-thread-0) HTTP Request to /personnes?page=0&size=10 failed, error id: 61c5cd46-860e-4beb-9519-74724f8fc3af-1: org.jboss.resteasy.spi.UnhandledException: java.lang.NoSuchMethodError: 'java.lang.Object io.quarkus.hibernate.orm.panache.kotlin.runtime.KotlinJpaOperations.find(java.lang.Class, java.lang.Object, java.lang.Object[])'
+at org.jboss.resteasy.core.ExceptionHandler.handleApplicationException(ExceptionHandler.java:106)
+...
+````
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+You can reproduce the bug by running the unit tests (mvn test) or by calling the Rest endpoint http://localhost:8080/personnes
+when the application is started.
+You can also use swagger at http://localhost:8080/q/swagger-ui/
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+## Components
 
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/quarkus-kotlin-hibernate-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
-
-## Related Guides
-
-- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+This module is using the following components:
+- agroal
+- cdi
+- hibernate-orm
+- hibernate-orm-panache-kotlin
+- jdbc-h2
+- kotlin
+- narayana-jta
+- resteasy
+- smallrye-context-propagation
+- smallrye-openapi
+- swagger-ui
